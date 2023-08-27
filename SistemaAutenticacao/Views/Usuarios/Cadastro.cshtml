@@ -1,0 +1,53 @@
+﻿@model UsuariosModel
+
+<div class="container mt-5">
+    <h2>Criar Novo Cadastro</h2>
+    <hr />
+    <form method="POST" asp-controller="Usuarios" asp-action="Cadastro" id="Form">
+
+        <div class="form-group  mt-3">
+            <label for="exampleInputEmail1">Nome:</label>
+            <input type="text" class="form-control" id="Nome" placeholder="Digite seu Nome"  asp-for="Nome">
+        </div>
+
+        <div class="form-group  mt-3">
+            <label for="exampleInputEmail1">Email:</label>
+            <input type="email" class="form-control" id="Email1" placeholder="Digite seu Email" asp-for="Email">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="exampleInputPassword1">Senha:</label>
+            <input type="password" class="form-control" id="Senha1" placeholder="Digite sua Senha" asp-for="Senha">
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="exampleInputPassword1">Repetir Senha:</label>
+            <input type="password" class="form-control" id="Senha2" placeholder="Digite novamente sua Senha">
+        </div>
+
+        <br /><strong><span class="text-danger" id="msg">@TempData["ErrorMessage"]</span></strong><br />
+
+        <button type="submit" id="submit" class="btn btn-success mt-4">Criar Cadastro</button>
+        <a class="btn btn-primary mt-4" asp-controller="Home" asp-action="Index">Voltar</a>
+
+    </form>
+
+
+</div>
+
+<script>
+
+    submit.addEventListener('click', function(event){
+        let msg = document.getElementById("msg");
+        let senha1 = document.getElementById("Senha1");
+        let senha2 = document.getElementById("Senha2");
+        
+        if(senha1.value !== senha2.value){
+            event.preventDefault();
+            msg.innerHTML = "As Senhas não são identicas!";
+        }
+        
+        
+    })
+
+</script>
